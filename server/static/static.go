@@ -27,7 +27,7 @@ func (s *FilesServer) ServerFiles(w http.ResponseWriter, r *http.Request) {
 		w = &responseRewriter{ResponseWriter: w, old: []byte(`<base href="/">`), new: []byte(fmt.Sprintf(`<base href="%s">`, s.baseHRef))}
 	}
 
-	w.Header().Set("X-Frame-Options", "DENY")
+	w.Header().Set("X-Frame-Options", "")
 	w.Header().Set("Content-Security-Policy", "default-src 'self' 'unsafe-inline'")
 	if s.hsts {
 		w.Header().Set("Strict-Transport-Security", "max-age=31536000")
